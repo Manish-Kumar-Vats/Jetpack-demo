@@ -1,0 +1,2 @@
+rootProject.name = "fruitfal_up"
+include ':app'
