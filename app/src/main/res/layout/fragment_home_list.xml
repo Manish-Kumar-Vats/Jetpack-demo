@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-    <!--   <data>
-
-           <variable
-               name="listViewModel"
-               type="in.test.fruitful.changes.homelist.HomeListViewModel" />
-       </data>-->
+    <data>
+        <variable
+            name="listViewModel"
+            type="in.test.fruitfal_up.viewmodel.HomeListViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -40,10 +39,10 @@
             android:id="@+id/empty_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:visibility="gone"
             android:background="@color/white"
-            android:textAppearance="@style/title_text" />
+            android:gravity="center"
+            android:textAppearance="@style/title_text"
+            android:visibility="gone" />
 
         <ProgressBar
             android:id="@+id/progress"

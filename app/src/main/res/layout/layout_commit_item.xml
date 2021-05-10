@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Author" />
+            android:text="Author" />
 
         <TextView
             android:id="@+id/commit_message"
@@ -36,7 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/commit_author"
             app:layout_constraintTop_toBottomOf="@id/commit_author"
-            tools:text="message" />
+            android:text="message" />
 
         <TextView
             android:id="@+id/commit_sha"
@@ -49,7 +49,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/commit_message"
             app:layout_constraintTop_toBottomOf="@id/commit_message"
-            tools:text="21736823_23y82_djhasa7dshj" />
+            android:text="21736823_23y82_djhasa7dshj" />
 
         <TextView
             android:id="@+id/commit_date"
@@ -58,7 +58,7 @@
             android:textAppearance="@style/small_title_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="24 May 2021" />
+            android:text="24 May 2021" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
