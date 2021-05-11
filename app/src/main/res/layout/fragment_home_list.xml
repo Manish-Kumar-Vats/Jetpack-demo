@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:background="#31F5EFFB"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".changes.homelist.HomeListFragment">
@@ -41,10 +42,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
+            android:text="No data found"
+            android:visibility="gone"
             android:gravity="center"
             android:paddingVertical="40dp"
-            android:textAppearance="@style/title_text"
-            android:visibility="gone" />
+            android:textAppearance="@style/title_text"/>
 
         <RelativeLayout
             android:id="@+id/progress"

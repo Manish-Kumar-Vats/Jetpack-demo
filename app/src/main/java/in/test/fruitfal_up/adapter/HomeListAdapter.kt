@@ -2,11 +2,14 @@ package `in`.test.fruitfal_up.adapter
 
 import `in`.test.fruitfal_up.databinding.LayoutCommitItemBinding
 import `in`.test.fruitfal_up.response.CommitResponse
+import `in`.test.fruitfal_up.ui.formattedDate
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
 class HomeListAdapter(val clickListener: CommitListener) :
     ListAdapter<CommitResponse, HomeListAdapter.ViewHolder>(CommitDiffCallback()) {
@@ -15,10 +18,9 @@ class HomeListAdapter(val clickListener: CommitListener) :
         return ViewHolder.from(parent)
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, position,clickListener)
+        holder.bind(item, position, clickListener)
     }
 
 
@@ -40,18 +42,10 @@ class HomeListAdapter(val clickListener: CommitListener) :
             binding.commit = item
             binding.executePendingBindings()
             binding.commitAuthor.text = item.commit?.author?.authorName
+            binding.commitDate.text = formattedDate(item.commit?.author?.commitDate!!)
+            binding.commitMessage.text = item.commit.commitMessage
+            binding.commitSha.text = item.sha
 
-            /*        commitAuthor.text = commitDetail
-            val commitData: CommitModel? = commitDetail.commitData
-                val authorData: AuthorModel? = commitDetail.commitData?.author
-
-                commitAuthor.text = authorData?.authorName
-                commitMessage.text = commitData?.commitMessage
-                commitSha.text = commitDetail.sha
-                commitDate.text = Tools().formattedDate(authorData?.commitDate)
-
-    //            container.setOnClickListener { listener.onClick(commitDetail.url) }
-                container.setOnClickListener { listener.onClick(commitDetail.sha) }*/
         }
     }
 
@@ -62,7 +56,6 @@ class HomeListAdapter(val clickListener: CommitListener) :
 
 class CommitDiffCallback : DiffUtil.ItemCallback<CommitResponse>() {
     override fun areItemsTheSame(oldItem: CommitResponse, newItem: CommitResponse): Boolean {
-//        return oldItem.UNIQUE_ID == newItem.UNIQUE_ID
         return oldItem.sha == newItem.sha
     }
 

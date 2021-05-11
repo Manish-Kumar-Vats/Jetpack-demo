@@ -1,12 +1,9 @@
 package `in`.test.fruitfal_up.network
 
 import `in`.test.fruitfal_up.response.CommitResponse
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -18,6 +15,7 @@ interface ApiService {
     fun getCommitListing(
         @Path("owner") owner: String,
         @Path("repo") repo: String,
+        @Header("Authorization") auth: String,
         @Query("per_page") perPage: String,
         @Query("page") page: String
     ): Call<List<CommitResponse>>
@@ -27,6 +25,7 @@ interface ApiService {
     fun getCommitDetail(
         @Path("owner") owner: String,
         @Path("repo") repo: String,
+        @Header("Authorization") auth: String,
         @Path("ref") ref: String
     ): Call<CommitResponse>
 

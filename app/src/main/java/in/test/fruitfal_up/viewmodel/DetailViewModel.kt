@@ -54,7 +54,7 @@ class DetailViewModel(val sha: String) : ViewModel() {
     private fun getCommitDetail() {
 
         ApiClient.getClient().create(ApiService::class.java)
-            .getCommitDetail("square", "retrofit", sha)
+            .getCommitDetail("square", "retrofit","token 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", sha)
             .enqueue(object : Callback<CommitResponse> {
                 override fun onResponse(
                     call: Call<CommitResponse>,

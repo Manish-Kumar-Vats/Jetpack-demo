@@ -6,8 +6,7 @@ import androidx.databinding.BindingAdapter
 
 @BindingAdapter("dateFormatted")
 fun TextView.setDateFormatted(item: CommitResponse) {
-    item?.let {
-//        text = formattedDate(item.timeValue)
-        text = "12345678"
+    item.let {
+        text = formattedDate(item.commit?.author?.authorName!!)
     }
 }

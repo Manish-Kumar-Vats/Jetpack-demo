@@ -20,7 +20,7 @@ class CommitRepository {
     ): LiveData<List<CommitResponse>> {
         val data: MutableLiveData<List<CommitResponse>> =
             MutableLiveData()
-        apiService.getCommitListing(owner, repo, perPage, page)
+        apiService.getCommitListing(owner, repo,"token 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", perPage, page)
             .enqueue(object : Callback<List<CommitResponse>> {
                 override fun onResponse(
                     call: retrofit2.Call<List<CommitResponse>>,
@@ -44,7 +44,7 @@ class CommitRepository {
     ): LiveData<CommitResponse> {
         val data: MutableLiveData<CommitResponse> =
             MutableLiveData()
-        apiService.getCommitDetail(owner, repo, sha)
+        apiService.getCommitDetail(owner, repo,"token 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", sha)
             .enqueue(object : Callback<CommitResponse> {
                 override fun onResponse(
                     call: Call<CommitResponse>,

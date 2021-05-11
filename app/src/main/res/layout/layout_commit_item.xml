@@ -15,16 +15,19 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/container"
-        android:layout_margin="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="18dp"
+        android:elevation="8dp"
         app:cardCornerRadius="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:id="@+id/sadasdsad"
             android:foreground="?attr/selectableItemBackground"
             android:onClick="@{() -> clickListener.onClick(commit)}"
             android:orientation="vertical"
@@ -41,13 +44,13 @@
 
             <TextView
                 android:id="@+id/commit_message"
-                style="@style/sub_title_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:gravity="start"
+                app:layout_constraintBottom_toTopOf="@id/commit_sha"
                 android:maxLines="2"
-                android:text="message"
+                android:text="messagejdhbsdf dhsfv bjsdf nbsfdjhvb snfsdfs sdfhsd f shjnsdvbf"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/commit_author"
                 app:layout_constraintTop_toBottomOf="@id/commit_author" />
@@ -58,20 +61,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:gravity="start"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:singleLine="true"
                 android:text="21736823_23y82_djhasa7dshj"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/commit_message"
                 app:layout_constraintTop_toBottomOf="@id/commit_message" />
-
+<!--
+            app:dateFormatted="@{commit}"-->
             <TextView
                 android:id="@+id/commit_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="24 May 2021"
                 android:textAppearance="@style/small_title_text"
-                app:dateFormatted="@{commit}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
