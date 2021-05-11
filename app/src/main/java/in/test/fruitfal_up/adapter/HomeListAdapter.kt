@@ -1,22 +1,15 @@
 package `in`.test.fruitfal_up.adapter
 
-import `in`.test.fruitfal_up.R
+import `in`.test.fruitfal_up.databinding.LayoutCommitItemBinding
+import `in`.test.fruitfal_up.response.CommitResponse
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class HomeListAdapter : RecyclerView.Adapter<HomeListAdapter.ViewHolder>() {
-
-    var data = listOf<String>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun getItemCount(): Int = data.size
+class HomeListAdapter(val clickListener: CommitListener) :
+    ListAdapter<CommitResponse, HomeListAdapter.ViewHolder>(CommitDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -24,52 +17,29 @@ class HomeListAdapter : RecyclerView.Adapter<HomeListAdapter.ViewHolder>() {
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
-        holder.bind(item, position)
+        val item = getItem(position)
+        holder.bind(item, position,clickListener)
     }
 
 
-/*    fun clear() {
-        mCommitList.clear()
-        notifyDataSetChanged()
-    }
-
-    fun addItem(item: CommitsResponse) {
-        mCommitList.add(item)
-        notifyDataSetChanged()
-    }
-
-    fun removeItemAt(position: Int) {
-        mCommitList.removeAt(position)
-        notifyDataSetChanged()
-    }
-
-    fun addAll(addList: List<CommitsResponse>) {
-        mCommitList.addAll(addList)
-        notifyDataSetChanged()
-    }*/
-
-    class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder private constructor(val binding: LayoutCommitItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater
-                    .inflate(R.layout.layout_commit_item, parent, false)
-                return ViewHolder(view)
+                val binding = LayoutCommitItemBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
         }
 
-        private val container: CardView = itemView.findViewById(R.id.container)
-        private val commitAuthor: TextView = itemView.findViewById(R.id.commit_author)
-        private val commitMessage: TextView = itemView.findViewById(R.id.commit_message)
-        private val commitSha: TextView = itemView.findViewById(R.id.commit_sha)
-        private val commitDate: TextView = itemView.findViewById(R.id.commit_date)
 
+        fun bind(item: CommitResponse, position: Int, clickListener: CommitListener) {
 
-        fun bind(item: String, position: Int) {
-
-            commitAuthor.text = item
+            binding.clickListener = clickListener
+            binding.commit = item
+            binding.executePendingBindings()
+            binding.commitAuthor.text = item.commit?.author?.authorName
 
             /*        commitAuthor.text = commitDetail
             val commitData: CommitModel? = commitDetail.commitData
@@ -88,4 +58,20 @@ class HomeListAdapter : RecyclerView.Adapter<HomeListAdapter.ViewHolder>() {
     companion object {
     }
 
+}
+
+class CommitDiffCallback : DiffUtil.ItemCallback<CommitResponse>() {
+    override fun areItemsTheSame(oldItem: CommitResponse, newItem: CommitResponse): Boolean {
+//        return oldItem.UNIQUE_ID == newItem.UNIQUE_ID
+        return oldItem.sha == newItem.sha
+    }
+
+    override fun areContentsTheSame(oldItem: CommitResponse, newItem: CommitResponse): Boolean {
+        return oldItem == newItem
+    }
+
+}
+
+class CommitListener(val clickListener: (commitSha: String) -> Unit) {
+    fun onClick(commit: CommitResponse) = clickListener(commit.sha)
 }

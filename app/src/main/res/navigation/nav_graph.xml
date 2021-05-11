@@ -3,11 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeListFragment">
+    app:startDestination="@id/home_list_fragment">
 
     <fragment
-        android:id="@+id/homeListFragment"
+        android:id="@+id/home_list_fragment"
         android:name="in.test.fruitfal_up.ui.HomeListFragment"
         android:label="HomeListFragment"
-        tools:layout="@layout/fragment_home_list" />
+        tools:layout="@layout/fragment_home_list">
+
+        <action
+            android:id="@+id/action_home_list_fragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="in.test.fruitfal_up.ui.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="sha"
+            app:argType="string" />
+    </fragment>
+
 </navigation>
