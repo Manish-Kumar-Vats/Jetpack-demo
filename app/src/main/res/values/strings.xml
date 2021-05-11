@@ -8,4 +8,5 @@
     <string name="deletion">Deletion :</string>
     <string name="total_changes">Total files changed: </string>
     <string name="commit_detail">Commit Detail</string>
+    <string name="loading">loading..</string>
 </resources>

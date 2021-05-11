@@ -1,21 +1,36 @@
 package `in`.test.fruitfal_up.network
 
+import `in`.test.fruitfal_up.response.CommitResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface ApiService {
 
-    //
-//    @GET("search/repositories?sort=stars")
-//    suspend fun searchRepos(
-//        @Query("q") query: String,
-//        @Query("page") page: Int,
-//        @Query("per_page") itemsPerPage: Int
-//    ): RepoSearchResponse
-//
+    // Get Commit listing
+    @GET("repos/{owner}/{repo}/commits")
+    fun getCommitListing(
+        @Path("owner") owner: String,
+        @Path("repo") repo: String,
+        @Query("per_page") perPage: String,
+        @Query("page") page: String
+    ): Call<List<CommitResponse>>
+
+    // Get Commit listing
+    @GET("repos/{owner}/{repo}/commits/{ref}")
+    fun getCommitDetail(
+        @Path("owner") owner: String,
+        @Path("repo") repo: String,
+        @Path("ref") ref: String
+    ): Call<CommitResponse>
+
+    /*
     companion object {
         private const val BASE_URL = "https://api.github.com/"
 
@@ -33,5 +48,5 @@ interface ApiService {
                 .build()
                 .create(ApiService::class.java)
         }
-    }
+    }*/
 }
