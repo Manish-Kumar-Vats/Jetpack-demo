@@ -10,15 +10,24 @@ import retrofit2.http.Query
 
 interface ApiService {
 
+    /* // Get Commit listing
+        @GET("repos/{owner}/{repo}/commits")
+        fun getCommitListing(
+            @Path("owner") owner: String,
+            @Path("repo") repo: String,
+            @Header("Authorization") auth: String,
+            @Query("per_page") perPage: String,
+            @Query("page") page: String
+        ): Call<List<CommitResponse>>
+    */
+
     // Get Commit listing
-    @GET("repos/{owner}/{repo}/commits")
-    fun getCommitListing(
-        @Path("owner") owner: String,
-        @Path("repo") repo: String,
+    @GET("repos/square/retrofit/commits")
+    suspend fun getCommitListAPI(
         @Header("Authorization") auth: String,
         @Query("per_page") perPage: String,
         @Query("page") page: String
-    ): Call<List<CommitResponse>>
+    ): List<CommitResponse>
 
     // Get Commit listing
     @GET("repos/{owner}/{repo}/commits/{ref}")
@@ -29,23 +38,12 @@ interface ApiService {
         @Path("ref") ref: String
     ): Call<CommitResponse>
 
-    /*
-    companion object {
-        private const val BASE_URL = "https://api.github.com/"
+/*
+    // Get Commit listing
+    @GET("repos/square/retrofit/commits/{ref}")
+    fun getCommitDetail(
+        @Header("Authorization") auth: String,
+        @Path("ref") ref: String
+    ): Call<CommitResponse>*/
 
-        fun create(): ApiService {
-            val logger = HttpLoggingInterceptor()
-            logger.level = HttpLoggingInterceptor.Level.BASIC
-
-            val client = OkHttpClient.Builder()
-                .addInterceptor(logger)
-                .build()
-            return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(ApiService::class.java)
-        }
-    }*/
 }

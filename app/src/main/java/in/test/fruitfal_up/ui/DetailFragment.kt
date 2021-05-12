@@ -4,6 +4,7 @@ import `in`.test.fruitfal_up.R
 import `in`.test.fruitfal_up.databinding.FragmentDetailBinding
 import `in`.test.fruitfal_up.viewmodel.DetailViewModel
 import `in`.test.fruitfal_up.viewmodel.DetailViewModelFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
+import java.util.*
 
 
 class DetailFragment : Fragment() {
@@ -34,6 +36,8 @@ class DetailFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+
+        binding.commitMessage.setTextColor(Color.argb(255, Random().nextInt(256), Random().nextInt(256), Random().nextInt(256)))
 
         return binding.root
     }

@@ -6,13 +6,14 @@ import `in`.test.fruitfal_up.ui.formattedDate
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class HomeListAdapter(val clickListener: CommitListener) :
-    ListAdapter<CommitResponse, HomeListAdapter.ViewHolder>(CommitDiffCallback()) {
+class HomeListAdapter(private val clickListener: CommitListener) :
+    PagingDataAdapter<CommitResponse, HomeListAdapter.ViewHolder>(CommitDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -20,7 +21,7 @@ class HomeListAdapter(val clickListener: CommitListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, position, clickListener)
+        item?.let { holder.bind(it, clickListener) }
     }
 
 
@@ -36,7 +37,7 @@ class HomeListAdapter(val clickListener: CommitListener) :
         }
 
 
-        fun bind(item: CommitResponse, position: Int, clickListener: CommitListener) {
+        fun bind(item: CommitResponse, clickListener: CommitListener) {
 
             binding.clickListener = clickListener
             binding.commit = item
@@ -49,8 +50,6 @@ class HomeListAdapter(val clickListener: CommitListener) :
         }
     }
 
-    companion object {
-    }
 
 }
 
@@ -60,7 +59,7 @@ class CommitDiffCallback : DiffUtil.ItemCallback<CommitResponse>() {
     }
 
     override fun areContentsTheSame(oldItem: CommitResponse, newItem: CommitResponse): Boolean {
-        return oldItem == newItem
+        return oldItem.sha == newItem.sha
     }
 
 }

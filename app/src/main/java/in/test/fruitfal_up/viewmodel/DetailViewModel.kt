@@ -2,6 +2,7 @@ package `in`.test.fruitfal_up.viewmodel
 
 import `in`.test.fruitfal_up.network.ApiClient
 import `in`.test.fruitfal_up.network.ApiService
+import `in`.test.fruitfal_up.network.RetroClient
 import `in`.test.fruitfal_up.response.CommitResponse
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -53,8 +54,21 @@ class DetailViewModel(val sha: String) : ViewModel() {
 
     private fun getCommitDetail() {
 
+     /*
+        val commitsDetail = RetroClient.getRetroInstance().create(ApiService::class.java)
+            .getCommitDetail(
+                "token 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",
+                sha
+            )
+
+*/
         ApiClient.getClient().create(ApiService::class.java)
-            .getCommitDetail("square", "retrofit","token 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", sha)
+            .getCommitDetail(
+                "square",
+                "retrofit",
+                "token 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",
+                sha
+            )
             .enqueue(object : Callback<CommitResponse> {
                 override fun onResponse(
                     call: Call<CommitResponse>,

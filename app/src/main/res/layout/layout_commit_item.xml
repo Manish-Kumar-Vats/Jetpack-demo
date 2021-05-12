@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -16,18 +17,18 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/container"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="8dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="12dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sadasdsad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:id="@+id/sadasdsad"
             android:foreground="?attr/selectableItemBackground"
             android:onClick="@{() -> clickListener.onClick(commit)}"
             android:orientation="vertical"
@@ -38,9 +39,9 @@
                 style="@style/title_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Author"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Author" />
 
             <TextView
                 android:id="@+id/commit_message"
@@ -48,12 +49,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:gravity="start"
-                app:layout_constraintBottom_toTopOf="@id/commit_sha"
                 android:maxLines="2"
-                android:text="messagejdhbsdf dhsfv bjsdf nbsfdjhvb snfsdfs sdfhsd f shjnsdvbf"
+                app:layout_constraintBottom_toTopOf="@id/commit_sha"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/commit_author"
-                app:layout_constraintTop_toBottomOf="@id/commit_author" />
+                app:layout_constraintTop_toBottomOf="@id/commit_author"
+                tools:text="messagejdhbsdf dhsfv bjsdf nbsfdjhvb snfsdfs sdfhsd f shjnsdvbf" />
 
             <TextView
                 android:id="@+id/commit_sha"
@@ -61,23 +62,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:gravity="start"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:singleLine="true"
-                android:text="21736823_23y82_djhasa7dshj"
                 android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/commit_message"
-                app:layout_constraintTop_toBottomOf="@id/commit_message" />
-<!--
-            app:dateFormatted="@{commit}"-->
+                app:layout_constraintTop_toBottomOf="@id/commit_message"
+                tools:text="21733_23y82_djhasa7dshj" />
+            <!--
+                        app:dateFormatted="@{commit}"-->
             <TextView
                 android:id="@+id/commit_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="24 May 2021"
                 android:textAppearance="@style/small_title_text"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="24 May 2021" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
